@@ -1,0 +1,13 @@
+.home {
+  height: 100%;
+  .ant-layout {
+    height: 100%;
+  }
+  .left-sider {
+    width: 180px!important;
+    flex: 0 0 0 180px!important;
+    min-width: 180px!important;
+    height: 100%;
+    background-color: transparent;
+  }
+}
