@@ -27,7 +27,7 @@ const LefeMenu = props => {
         <div className="menu">
           <Menu
               style={{ width: '100%' }}
-              defaultSelectedKeys={['/home/index']}
+              selectedKeys={[getPathname()]}
               mode="inline"
               onClick={goPage}
           >
