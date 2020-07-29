@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { getChildrenRoutes } from "../../tools/common";
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames'
+import logoImg from '../../static/img/logo.png'
 const { SubMenu } = Menu;
 
 const LefeMenu = props => {
@@ -27,7 +28,7 @@ const LefeMenu = props => {
       <div className='left-menu'>
         <div className="logo-wrap">
           <div className="logo">
-            <img src={require('../../static/img/logo.png')} alt=""/>
+            <img src={logoImg} alt=""/>
           </div>
           <div className={classNames({
             'logo-text':true,

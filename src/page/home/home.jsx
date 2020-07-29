@@ -1,7 +1,7 @@
 import React,{ } from 'react';
 import './home.scss'
 import { Layout,Breadcrumb } from 'antd';
-import { connect, useSelector,useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import HeaderMenu from './headerMenu'
 import LefeMenu from './leftMenu.jsx'
 import { Main } from '../../components'
@@ -90,4 +90,4 @@ const Home = () => {
   )
 }
 
-export default connect()(Home)
+export default Home

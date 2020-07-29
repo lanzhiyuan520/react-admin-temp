@@ -10,6 +10,8 @@ import { openMessage, setStorage } from "../../tools/common";
 import { setLang } from "../../store/actions/global";
 import i18n from 'i18next'
 import classNames from 'classnames'
+import cnImg from '../../static/img/cn.png'
+import enImg from '../../static/img/en.png'
 
 const HeaderMenu = () => {
   const history = useHistory();
@@ -19,16 +21,16 @@ const HeaderMenu = () => {
   const [langList] = useState([
     {
       title : '中文',
-      img : require('../../static/img/cn.png'),
+      img : cnImg,
       lang : 'zh'
     },
     {
       title : 'English',
-      img : require('../../static/img/en.png'),
+      img : enImg,
       lang : 'en'
     }
   ])
-  const [langState,setLangState] = useState(require('../../static/img/cn.png'))
+  const [langState,setLangState] = useState(cnImg)
 
   useEffect(() => {
     getLang()
@@ -37,7 +39,11 @@ const HeaderMenu = () => {
   const getLang = () => {
     let lang = global.lang
     let langItem = langList.filter(item => item.lang === lang)
-    setLangState(langItem[0].img)
+    try {
+      setLangState(langItem[0].img)
+    }catch (e) {
+
+    }
   }
 
   const setLangChange = (e) => {

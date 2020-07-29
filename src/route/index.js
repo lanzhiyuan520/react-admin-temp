@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch,BrowserRouter} from "react-router-dom"
+import { Switch,HashRouter} from "react-router-dom"
 import renderRoutes from './renderRoutes'
 import RouterMaps from './routerMaps'
 import thunk from 'redux-thunk'
@@ -38,11 +38,11 @@ let Router = () => {
   window.$t = t
   return (
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <Switch>
             {renderRoutes(RouterMaps)}
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
   )
 }
