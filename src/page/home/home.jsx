@@ -1,22 +1,28 @@
-import React from 'react';
+import React,{ } from 'react';
 import './home.scss'
 import { Layout,Breadcrumb } from 'antd';
+import { connect, useSelector,useDispatch } from "react-redux";
+import HeaderMenu from './headerMenu'
 import LefeMenu from './leftMenu.jsx'
 import { Main } from '../../components'
 import { useHistory } from 'react-router-dom';
 import routes from '../../route/routerMaps'
+import { Loading } from '../../components'
+import classNames from 'classnames'
+import { setLeftMenu } from "../../store/actions/global";
 const { Header, Sider, Content } = Layout;
+
 
 const Home = () => {
   const history = useHistory();
+  const global = useSelector(state => state.global);
+  const dispatch = useDispatch()
   const pathSnippets = history.location.pathname.split('/').filter(i => i);
   const breadcrumbList = []
   const getRoutes = (url,routes) => {
     routes.forEach(item => {
-      if (item.path === url) {
-        if (item.path !== '/home') {
-          breadcrumbList.push(item)
-        }
+      if (item.path === url && item.path !== '/home') {
+        breadcrumbList.push(item)
       }
       if (item.routes) {
         getRoutes(url,item.routes)
@@ -28,27 +34,53 @@ const Home = () => {
     getRoutes(url,routes)
   })
 
+  const leftMenuSetting = () => {
+    dispatch(setLeftMenu(!global.isShowLeftMenu))
+  }
+
   return (
     <div className='home'>
+      {
+        global.isLoading?
+            <Loading />
+            :
+            null
+      }
       <Layout>
-        <Sider className='left-sider'>
+        <Sider
+            className='left-sider'
+            collapsible={true}
+            width={180}
+            trigger={null}
+            collapsed={!global.isShowLeftMenu}
+        >
           <LefeMenu />
         </Sider>
         <Layout>
-          <Header>Header</Header>
+          <Header>
+            <HeaderMenu />
+          </Header>
           <Content>
             <div className='main'>
-              <Breadcrumb separator=">">
-                {
-                  breadcrumbList.map(item => {
-                    return (
-                        <Breadcrumb.Item key={item.path}>
-                          {item.title}
-                        </Breadcrumb.Item>
-                    );
-                  })
-                }
-              </Breadcrumb>
+              <div className='bread'>
+                <div className={classNames({
+                  'show-or-hide-menu':true,
+                  'hide-menu':!global.isShowLeftMenu
+                })}>
+                  <i className='iconfont icon-zhankai-shouqi' onClick={leftMenuSetting}></i>
+                </div>
+                <Breadcrumb separator=">">
+                  {
+                    breadcrumbList.map(item => {
+                      return (
+                          <Breadcrumb.Item key={item.path}>
+                            {window.$t(item.title)}
+                          </Breadcrumb.Item>
+                      );
+                    })
+                  }
+                </Breadcrumb>
+              </div>
               <Main></Main>
             </div>
           </Content>
@@ -58,4 +90,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default connect()(Home)

@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { Route,Redirect } from "react-router-dom"
 import RouterMaps from '../../route/routerMaps.js'
 
+import './main.scss'
+
 const Main = (props) => {
   const history = useHistory();
   const router = RouterMaps.filter(routeItem => routeItem.path === '/home')

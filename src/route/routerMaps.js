@@ -40,7 +40,7 @@ export default [
           {
             path : '/home/plugins/exportExcel',
             name : 'exportExcel',
-            title : "导出表格",
+            title : "导出excel",
             icon : FileExcelOutlined,
             component : Excel
           }

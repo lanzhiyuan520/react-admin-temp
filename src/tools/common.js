@@ -5,7 +5,7 @@ import routerMaps from '../route/routerMaps'
  * @param type 提示类型
  * @param text 提示内容
  */
-const openMessage = (type,text) => {
+const openMessage = (type='success',text='提示') => {
   message[type](text)
 }
 
@@ -27,6 +27,14 @@ const setStorage = (key,val) => {
 }
 
 /**
+ * 删除缓存内容
+ * @param key
+ */
+const removeStroage = key => {
+  localStorage.removeItem(key)
+}
+
+/**
  * 获取指定路径下的子路由
  * @param name
  * @returns {*[]}
@@ -40,5 +48,6 @@ export {
   openMessage,
   getStorage,
   setStorage,
-  getChildrenRoutes
+  getChildrenRoutes,
+  removeStroage
 }

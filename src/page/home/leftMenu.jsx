@@ -1,13 +1,15 @@
 import React,{ useEffect } from 'react'
 import './leftMenu.scss'
 import { Menu } from 'antd';
-
+import { useSelector } from 'react-redux'
 import { getChildrenRoutes } from "../../tools/common";
 import { useHistory } from 'react-router-dom';
+import classNames from 'classnames'
 const { SubMenu } = Menu;
 
 const LefeMenu = props => {
   const history = useHistory();
+  const global = useSelector(state => state.global);
   const routes = getChildrenRoutes('/home')
   const menus = routes[0].routes || []
 
@@ -23,7 +25,15 @@ const LefeMenu = props => {
 
   return (
       <div className='left-menu'>
-        <div className="logo-wrap"></div>
+        <div className="logo-wrap">
+          <div className="logo">
+            <img src={require('../../static/img/logo.png')} alt=""/>
+          </div>
+          <div className={classNames({
+            'logo-text':true,
+            'none':!global.isShowLeftMenu
+          })}>LanAdmin</div>
+        </div>
         <div className="menu">
           <Menu
               style={{ width: '100%' }}
@@ -36,17 +46,17 @@ const LefeMenu = props => {
                 if (!routeItem.routes) {
                   return (
                       <Menu.Item key={routeItem.path} icon={<routeItem.icon />}>
-                        {routeItem.title}
+                        {window.$t(routeItem.title)}
                       </Menu.Item>
                   )
                 } else {
                   return (
-                      <SubMenu key={routeItem.path} title={routeItem.title} icon={<routeItem.icon />} >
+                      <SubMenu key={routeItem.path} title={window.$t(routeItem.title)} icon={<routeItem.icon />} >
                         {
                           routeItem.routes.map(childItem => {
                             return (
                                 <Menu.Item key={childItem.path} icon={<childItem.icon />}>
-                                  {childItem.title}
+                                  {window.$t(childItem.title)}
                                 </Menu.Item>
                             )
                           })

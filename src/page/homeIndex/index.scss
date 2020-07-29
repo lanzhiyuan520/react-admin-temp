@@ -1,0 +1,67 @@
+.home-index {
+  width: 100%;
+  height: 100%;
+  .row-base {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 120px;
+    display: flex;
+  }
+  .el-col {
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 0 10px;
+    height: 100%;
+  }
+  .grid-content {
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    .card-title {
+      font-size: 14px;
+      color: #fff;
+    }
+    .card-text {
+      font-size: 16px;
+      color: #fff;
+    }
+  }
+  .ant-col {
+    padding: 0 10px;
+  }
+  .sale-bgcolor {
+    background-color: #FFA3A1;
+  }
+  .tax-bgcolor {
+    background-color: #84d9d2;
+  }
+  .extened-bgcolor {
+    background-color: #87DE75;
+  }
+  .like-bgcolor {
+    background-color: #a5e7f0;
+  }
+  .link-bg-color {
+    background-color: #93b7e3;
+  }
+  .kele-bg-color {
+    background-color: #edafda;
+  }
+}
+
+.charts-box {
+  margin-top: 20px;
+  .charts-content {
+    width: 100%;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+}

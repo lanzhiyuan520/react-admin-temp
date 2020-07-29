@@ -8,6 +8,9 @@ body,html {
 ul {
   list-style: none;
 }
+.none {
+    display: none!important;
+}
 #root {
     height: 100%;
     color: #333;

@@ -4,15 +4,39 @@
     height: 100%;
   }
   .left-sider {
-    width: 180px!important;
-    flex: 0 0 0 180px!important;
-    min-width: 180px!important;
+    //width: 180px!important;
+    //flex: 0 0 0 180px!important;
+    //min-width: 180px!important;
     height: 100%;
     background-color: transparent;
   }
   .main {
     height: 100%;
     box-sizing: border-box;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    //padding: 20px;
+    .bread {
+      height: 30px;
+      background-color: #eaebec;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding-left: 20px;
+      font-size: 16px;
+      .show-or-hide-menu {
+        transition: all .2s linear;
+        margin-right: 10px;
+        transform: rotate(180deg);
+      }
+      .show-or-hide-menu.hide-menu {
+        transform: rotate(0deg);
+      }
+    }
+  }
+  .ant-layout-header {
+    background-color: #fff;
+    padding: 0;
+    height: 60px;
   }
 }
