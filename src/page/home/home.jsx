@@ -60,7 +60,7 @@ const Home = () => {
           <Header>
             <HeaderMenu />
           </Header>
-          <Content>
+          <Content style={{ marginTop: 0 }}>
             <div className='main'>
               <div className='bread'>
                 <div className={classNames({

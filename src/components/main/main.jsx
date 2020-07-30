@@ -15,7 +15,7 @@ const Main = (props) => {
   })
 
   return (
-      <div className='main-content'>
+      <div className='main-content' id='main'>
         <>
         {
           (pathname === '/home' || pathname === '/home/')?

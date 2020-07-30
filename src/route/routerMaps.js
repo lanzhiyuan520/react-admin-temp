@@ -1,13 +1,17 @@
 import {
   AppstoreOutlined,
   SettingOutlined,
-  FileExcelOutlined } from '@ant-design/icons';
+  FileExcelOutlined,
+  UsergroupDeleteOutlined
+} from '@ant-design/icons';
 import Login from '../page/login/login'
 import Home from '../page/home/home'
 import Index from '../page/index/index'
 import HomeIndex from '../page/homeIndex/homeIndex'
 import Plugins from '../page/plugins'
 import Excel from '../page/plugins/exportExcel/exportExcel'
+import User from '../page/user/user'
+import ImportExcel from '../page/plugins/importExcel/importExcel'
 
 
 export default [
@@ -31,6 +35,14 @@ export default [
         component : HomeIndex
       },
       {
+        path : '/home/user',
+        name : 'User',
+        exact : true,
+        title : "用户",
+        icon : UsergroupDeleteOutlined,
+        component : User
+      },
+      {
         path : '/home/plugins',
         name : 'plugins',
         title : "插件",
@@ -43,6 +55,13 @@ export default [
             title : "导出excel",
             icon : FileExcelOutlined,
             component : Excel
+          },
+          {
+            path : '/home/plugins/importExcel',
+            name : 'importExcel',
+            title : "导入excel",
+            icon : FileExcelOutlined,
+            component : ImportExcel
           }
         ]
       }

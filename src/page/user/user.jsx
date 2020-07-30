@@ -1,9 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React,{ useEffect,useState,useRef } from 'react'
 import './index.scss'
-import { Table, Button, Space } from 'antd';
-import { exportExcel } from "../../../tools/excel";
+import { Table, Modal, Button, Space } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
-const ExcelPage = () => {
+const { confirm } = Modal;
+
+const User = () => {
   let [userList,setUserList] = useState([])
   const [columns] = useState([
     {
@@ -44,7 +46,7 @@ const ExcelPage = () => {
         return (
             <Space>
               <Button type="link" size='small' className='edit-btn'>编辑</Button>
-              <Button type="link" size='small'>删除</Button>
+              <Button type="link" size='small' onClick={() => { deleteUser(data) }}>删除</Button>
             </Space>
         )
       }
@@ -75,38 +77,22 @@ const ExcelPage = () => {
     setUserList(data)
   }
 
-  const exportData = () => {
-    const { userList } = refState.current
-    const exportHeaders = [
-      {
-        title : '姓名',
-        key : 'name'
-      },
-      {
-        title : '年龄',
-        key : 'age'
-      },
-      {
-        title : '地址',
-        key : 'address'
-      },
-      {
-        title : '电话',
-        key : 'phone'
-      },
-      {
-        title : '注册时间',
-        key : 'createTime'
+  const deleteUser = (data) => {
+    let { userList } = refState.current
+    confirm({
+      title: 'Do you want to delete these items?',
+      icon: <ExclamationCircleOutlined />,
+      content : '确定删除该用户？',
+      onOk () {
+        let id = data.id
+        let newUserList = userList.filter(item => item.id !== id)
+        setUserList(newUserList)
       }
-    ]
-    exportExcel(exportHeaders,userList,'人员列表')
+    })
   }
 
   return (
-      <div className='export-table'>
-        <div className="button-box">
-          <Button type="primary" size='small' onClick={exportData}>导出</Button>
-        </div>
+      <div className='user'>
         <Table
             columns={columns}
             rowKey={record => record.id}
@@ -118,5 +104,4 @@ const ExcelPage = () => {
       </div>
   )
 }
-
-export default ExcelPage
+export default User
