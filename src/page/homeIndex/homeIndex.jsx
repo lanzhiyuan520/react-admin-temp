@@ -1,8 +1,14 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import { Row, Col } from 'antd';
 import './index.scss'
 import { Pie, Line } from '../../components'
+
 const HomeIndex = () => {
+
+  useEffect(() => {
+
+  },[])
+
   return (
       <div className='home-index'>
         <div>

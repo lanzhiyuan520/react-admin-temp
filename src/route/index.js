@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import {createStore,applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
 import reducers from '../store'
+import request from '../tools/request'
 
 import i18n from 'i18next'
 import { useTranslation, initReactI18next } from 'react-i18next'
@@ -15,6 +16,8 @@ import en from '../lang/en'
 let store = createStore(reducers,applyMiddleware(thunk))
 
 let { global } = store.getState()
+
+React.$http = request
 
 i18n.use(initReactI18next)
     .init({

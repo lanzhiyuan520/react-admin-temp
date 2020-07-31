@@ -10,8 +10,9 @@ const message = {
   '权限设置':'permission',
   '权限管理':'management',
   '插件':'plugins',
-  '富文本':'richText',
+  '富文本':'editor',
   '导出excel':'exportExcel',
+  '导入excel':'importExcel',
   '你好':'hello',
   '拖拽':'drag',
   '登录':'login in',
@@ -20,6 +21,7 @@ const message = {
   '退出':'sign out',
   '懒加载':'lazy',
   '404':'404',
-  '401':'401'
+  '401':'401',
+  '图片base64转换' : 'imgBase64'
 }
 export default message

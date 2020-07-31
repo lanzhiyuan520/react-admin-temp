@@ -1,0 +1,32 @@
+.img-base64 {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  .content {
+    padding: 10px;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+    .left,.right {
+      width: 49%;
+      height: 100%;
+    }
+    .left {
+      border: 2px dashed #ccc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .img-content {
+        margin-bottom: 20px;
+        img {}
+      }
+      .upload-content {
+        width: 50%;
+      }
+    }
+  }
+  .button-content {
+    padding: 10px;
+  }
+}

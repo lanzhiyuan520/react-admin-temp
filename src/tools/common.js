@@ -43,11 +43,31 @@ const getChildrenRoutes = (name,routes = routerMaps) => {
   return routes.filter(routeItem => routeItem.path === name)
 }
 
+/**
+ * 获取指定路由
+ */
+const getCurrentRoutes = (name) => {
+  let routes = []
+  const getRoutes = (routerMaps) => {
+    routerMaps.forEach(item => {
+      if (name === item.path) {
+        routes = item
+      }
+      if (item.routes) {
+        getRoutes(item.routes)
+      }
+    })
+  }
+  getRoutes(routerMaps)
+  return routes
+}
+
 
 export {
   openMessage,
   getStorage,
   setStorage,
   getChildrenRoutes,
-  removeStroage
+  removeStroage,
+  getCurrentRoutes
 }

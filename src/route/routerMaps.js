@@ -2,7 +2,8 @@ import {
   AppstoreOutlined,
   SettingOutlined,
   FileExcelOutlined,
-  UsergroupDeleteOutlined
+  UsergroupDeleteOutlined,
+  FileImageOutlined
 } from '@ant-design/icons';
 import Login from '../page/login/login'
 import Home from '../page/home/home'
@@ -12,6 +13,8 @@ import Plugins from '../page/plugins'
 import Excel from '../page/plugins/exportExcel/exportExcel'
 import User from '../page/user/user'
 import ImportExcel from '../page/plugins/importExcel/importExcel'
+import Editor from '../page/plugins/editor/editor'
+import ImgBase from '../page/plugins/imgBase64/index'
 
 
 export default [
@@ -62,7 +65,21 @@ export default [
             title : "导入excel",
             icon : FileExcelOutlined,
             component : ImportExcel
-          }
+          },
+          {
+            path : '/home/plugins/editor',
+            name : 'editor',
+            title : "富文本",
+            icon : FileExcelOutlined,
+            component : Editor
+          },
+          {
+            path : '/home/plugins/imgbase',
+            name : 'imgbase',
+            title : "图片base64转换",
+            icon : FileImageOutlined,
+            component : ImgBase
+          },
         ]
       }
     ]

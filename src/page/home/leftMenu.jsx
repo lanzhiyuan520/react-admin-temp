@@ -46,20 +46,45 @@ const LefeMenu = props => {
               menus.map(routeItem => {
                 if (!routeItem.routes) {
                   return (
-                      <Menu.Item key={routeItem.path} icon={<routeItem.icon />}>
-                        {window.$t(routeItem.title)}
-                      </Menu.Item>
+                      !routeItem.hidden?
+                          <Menu.Item key={routeItem.path} icon={<routeItem.icon />}>
+                            {window.$t(routeItem.title)}
+                          </Menu.Item>
+                          :
+                          null
                   )
                 } else {
                   return (
                       <SubMenu key={routeItem.path} title={window.$t(routeItem.title)} icon={<routeItem.icon />} >
                         {
                           routeItem.routes.map(childItem => {
-                            return (
-                                <Menu.Item key={childItem.path} icon={<childItem.icon />}>
-                                  {window.$t(childItem.title)}
-                                </Menu.Item>
-                            )
+                            if (!childItem.routes) {
+                              return (
+                                  !childItem.hidden?
+                                      <Menu.Item key={childItem.path} icon={<childItem.icon />}>
+                                        {window.$t(childItem.title)}
+                                      </Menu.Item>
+                                      :
+                                      null
+                              )
+                            } else {
+                              return (
+                                  <SubMenu key={childItem.path} title={window.$t(childItem.title)} icon={<childItem.icon />}>
+                                    {
+                                      childItem.routes.map(item => {
+                                        return (
+                                            !item.hidden?
+                                                <Menu.Item key={item.path} icon={<item.icon />}>
+                                                  {window.$t(item.title)}
+                                                </Menu.Item>
+                                                :
+                                                null
+                                        )
+                                      })
+                                    }
+                                  </SubMenu>
+                              )
+                            }
                           })
                         }
                       </SubMenu>
