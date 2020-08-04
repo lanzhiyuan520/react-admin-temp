@@ -5,10 +5,10 @@ import 'antd/dist/antd.css'
 import * as serviceWorker from './serviceWorker';
 import Route from './route'
 
+
 window.goTop = function () {
   document.getElementById('main').scrollTo(0,0)
 }
-
 ReactDOM.render(
   <Route />,
   document.getElementById('root')

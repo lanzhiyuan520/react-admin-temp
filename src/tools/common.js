@@ -13,7 +13,7 @@ const openMessage = (type='success',text='提示') => {
  * 缓存获取值
  * @param key
  */
-const getStorage = key => {
+let getStorage = key => {
   return localStorage.getItem(key)
 }
 

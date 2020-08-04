@@ -4,15 +4,15 @@ import './index.scss'
 
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
-import 'echarts/lib/chart/line';
+import 'echarts/lib/chart/bar';
 
-const Line = (props) => {
+const Bar = React.forwardRef((props,ref) => {
   useEffect(() => {
 
   },[])
 
   return (
-    <div id='my-line-charts'>
+    <div id='my-bar-charts'>
       <ReactEchartsCore
           echarts={echarts}
           option={props.option}
@@ -21,6 +21,6 @@ const Line = (props) => {
       />
     </div>
   )
-}
+})
 
-export default Line
+export default Bar

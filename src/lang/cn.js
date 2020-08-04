@@ -22,6 +22,7 @@ const message = {
   '密码':'密码',
   '404':'404',
   '401':'401',
-  '图片base64转换':'图片base64转换'
+  '图片base64转换':'图片base64转换',
+  '房源':'房源'
 }
 export default message

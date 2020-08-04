@@ -15,6 +15,7 @@ import User from '../page/user/user'
 import ImportExcel from '../page/plugins/importExcel/importExcel'
 import Editor from '../page/plugins/editor/editor'
 import ImgBase from '../page/plugins/imgBase64/index'
+import House from '../page/house/house'
 
 
 export default [
@@ -36,6 +37,14 @@ export default [
         title : "首页",
         icon : AppstoreOutlined,
         component : HomeIndex
+      },
+      {
+        path : '/home/house',
+        name : 'House',
+        exact : true,
+        title : "房源",
+        icon : UsergroupDeleteOutlined,
+        component : House
       },
       {
         path : '/home/user',

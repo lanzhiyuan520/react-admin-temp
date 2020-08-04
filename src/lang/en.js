@@ -22,6 +22,7 @@ const message = {
   '懒加载':'lazy',
   '404':'404',
   '401':'401',
-  '图片base64转换' : 'imgBase64'
+  '图片base64转换' : 'imgBase64',
+  '房源':'house'
 }
 export default message

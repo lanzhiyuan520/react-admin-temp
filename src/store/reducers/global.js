@@ -1,5 +1,4 @@
 import { getStorage } from "../../tools/common";
-
 let store = {
   isLoading : false,
   isShowLeftMenu : true,
