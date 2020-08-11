@@ -4,18 +4,11 @@ import './index.scss'
 import { Pie , Bar, Loading} from '../../components'
 import api from '../../api'
 
-const HomeIndex = () => {
-  const [house,setHouse] = useState({})
-  const [areaAverage,setAreaAverage] = useState([])
-  const [colColor] = useState(['#87DE75','#a5e7f0','#93b7e3','#edafda'])
+const useGetHouse = (initialValue,setIsShowLoading) => {
+  const [house,setHouse] = useState(initialValue)
   const [pieOption,setPieOption] = useState({})
   const [barOption,setBarOption] = useState({})
-  const [isShowLoading,setIsShowLoading] = useState(false)
   useEffect(() => {
-    getHouse()
-  },[])
-
-  const getHouse = () => {
     setIsShowLoading(true)
     api.getHouseData()
         .then(res => {
@@ -23,7 +16,6 @@ const HomeIndex = () => {
           let areaData = []
           let price = []
           setHouse(res.data)
-          setAreaAverage(res.data.areaAverage)
           res.data.areaAverage.forEach(item => {
             data.push(item.area)
             areaData.push({
@@ -104,10 +96,20 @@ const HomeIndex = () => {
             ]
           })
         })
-      setTimeout(()=> {
-        setIsShowLoading(false)
-      },1000)
-  }
+    setTimeout(()=> {
+      setIsShowLoading(false)
+    },1000)
+  },[setIsShowLoading])
+  return [house,pieOption,barOption]
+}
+
+const HomeIndex = () => {
+  const [isShowLoading,setIsShowLoading] = useState(false)
+  const [ house,pieOption,barOption ] = useGetHouse({
+    areaAverage : [],
+    total : 0
+  },setIsShowLoading)
+  const [colColor] = useState(['#87DE75','#a5e7f0','#93b7e3','#edafda'])
 
   return (
       <div className='home-index'>
@@ -136,7 +138,7 @@ const HomeIndex = () => {
             <Col span={16}>
               <div className="row-base">
                 {
-                  areaAverage.map((item,index) => {
+                  house.areaAverage.map((item,index) => {
                     return (
                         index < 4?
                         <Col span={6} className='el-col' key={item.area}>
