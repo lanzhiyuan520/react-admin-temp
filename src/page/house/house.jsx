@@ -2,15 +2,39 @@ import React, {useState, useEffect} from 'react'
 import './index.scss'
 import { Table } from "antd";
 import api from '../../api'
-import { Loading } from '../../components'
-const House = () => {
-  const [houseList,setHouseList] = useState([])
-  const [isShowLoading,setIsShowLoading] = useState(false)
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../../store/actions/global";
+
+const useHouse = (initialValue) => {
+  const dispatch = useDispatch()
+  const [houseList,setHouseList] = useState(initialValue)
   const [paginationOptions,setPaginationOptions] = useState({
     defaultPageSize : 20,
     total : 0
   })
   const [page,setPage] = useState(1)
+  useEffect(() => {
+    dispatch(showLoading())
+    api.getHouseList(page)
+        .then(res => {
+          setHouseList(res.data)
+          setPaginationOptions({
+            defaultPageSize : 20,
+            total : res.total
+          })
+          window.goTop()
+        })
+      setTimeout(()=> {
+        dispatch(hideLoading())
+      },1000)
+  },[page,dispatch])
+
+  return [houseList,paginationOptions,setPage]
+}
+
+
+const House = () => {
+  const [ houseList,paginationOptions,setPage ] = useHouse([])
   const [columns] = useState([
     {
       title : 'id',
@@ -49,26 +73,6 @@ const House = () => {
     }
   ])
 
-  useEffect(() => {
-    getHouseList(page)
-  },[page])
-
-  const getHouseList = (page) => {
-    setIsShowLoading(true)
-    api.getHouseList(page)
-        .then(res => {
-          setHouseList(res.data)
-          setPaginationOptions({
-            defaultPageSize : 20,
-            total : res.total
-          })
-          window.goTop()
-        })
-    setTimeout(()=> {
-      setIsShowLoading(false)
-    },1000)
-  }
-
   const changePage = p => {
     let page = p.current
     setPage(page)
@@ -76,10 +80,6 @@ const House = () => {
 
   return (
       <div className='house'>
-        {
-          isShowLoading?
-          <Loading />:null
-        }
         <Table
             columns={columns}
             rowKey={record => record.id}
